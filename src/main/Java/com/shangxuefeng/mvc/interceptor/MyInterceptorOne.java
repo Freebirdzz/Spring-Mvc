@@ -16,22 +16,19 @@ public class MyInterceptorOne implements HandlerInterceptor {
     }
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
-        Device device = (Device)httpServletRequest.getAttribute("currentDevice");
-        if (device.isNormal()){
-            return false;
-        }
+        System.out.println(">>>>>>>>>>>>> 自定义拦截器---->postHandle <<<<<<<<<<<<<<<<");
+
         return true;
     }
 
     @Override
     public void postHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, ModelAndView modelAndView) throws Exception {
-        System.out.println(">>>>>>>>>>>>> postHandle <<<<<<<<<<<<<<<<");
+    //    System.out.println(">>>>>>>>>>>>> 自定义拦截器---->postHandle <<<<<<<<<<<<<<<<");
 
     }
 
     @Override
     public void afterCompletion(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) throws Exception {
-        System.out.println(">>>>>>>>>>>>> afterCompletion <<<<<<<<<<<<<<<<");
-        httpServletResponse.sendRedirect("mobile.jsp");
+     //   System.out.println(">>>>>>>>>>>>> 自定义拦截器---->afterCompletion <<<<<<<<<<<<<<<<");
     }
 }

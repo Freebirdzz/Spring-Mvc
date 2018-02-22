@@ -17,7 +17,7 @@ public class HomeController {
 
     @RequestMapping(value = "/one", method = RequestMethod.GET)
     public String test() {
-        String str = ">>>>>>>>>>>>>>helo<<<<<<<<<<<<<<<<";
+        String str = ">>>>>>>>>>>>>>Home控制器test方法，[映射url：/home/one]<<<<<<<<<<<<<<<<";
         System.out.println(str);
         return "one";
     }
