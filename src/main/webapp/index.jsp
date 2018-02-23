@@ -16,5 +16,8 @@
     <a href="<%=request.getContextPath()%>/home/one">click me</a>
     <br>
 <a href="<%=request.getContextPath()%>/device/test">访问设备检测</a>
+<br>
+    <a href="<%=request.getContextPath()%>/home/check">valid校验</a>
+
 </body>
 </html>

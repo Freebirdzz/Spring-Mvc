@@ -32,7 +32,9 @@
     <spring.version>4.3.7.RELEASE</spring.version>
     <guava.version>19.0</guava.version>
     <mybatis.version>3.4.5</mybatis.version>
-    <log4j2.version>2.7</log4j2.version>
+    <log4j2.version>2.5</log4j2.version>
+    <sl4j.version>1.7.12</sl4j.version>
+
   </properties>
 
 
@@ -139,6 +141,39 @@
       <artifactId>spring-mobile-device</artifactId>
       <version>1.1.5.RELEASE</version>
     </dependency>
+
+
+      <!--hibernate validator 校验框架,和hibernate orm框架没有关系哦！-->
+      <dependency>
+          <groupId>org.hibernate</groupId>
+          <artifactId>hibernate-validator</artifactId>
+          <version>4.3.2.Final</version>
+      </dependency>
+
+
+      <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-api</artifactId>
+        <version>${log4j2.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-core</artifactId>
+        <version>${log4j2.version}</version>
+      </dependency>
+      <dependency>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-api</artifactId>
+          <version>${sl4j.version}</version>
+      </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
+      <version>1.7.21</version>
+    </dependency>
+
+
+
   </dependencies>
 
   <build>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "WEB-INF/classes/spring/log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+    <!-- 该配置文件共定义了4个appender，即log日志的四个输出位置，关于appender详见 注4-->
+
+    <!-- [控制台]
+    -->
+    <appender name="console" class="org.apache.log4j.ConsoleAppender">  <!-- ConsoleAppender即表示日志输出方式为控制台 -->
+        <param name="encoding" value="UTF-8" />
+        <param name="target" value="System.out" />   <!-- log日志的输出位置为系统输出，一般就是控制台 -->
+        <!-- 关于layout中的参数详见 注5 -->
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%-5p %c{2} - %m%n" />
+        </layout>
+    </appender>
+
+    <!-- [公共Appender] -->
+    <appender name="DEFAULT-APPENDER" class="org.apache.log4j.DailyRollingFileAppender">   <!-- DailyRollingFileAppender即输出方式为每天产生一个日志文件 -->
+        <param name="File" value="../logs/common-default.log" />   <!-- 日志文件输出路径-->
+        <param name="Append" value="true" />  <!-- 设置是否在重新启动服务时，在原有日志的基础添加新日志 -->
+        <param name="encoding" value="UTF-8" />
+        <param name="DatePattern" value="'.'yyyy-MM-dd'.log'" /> <!--  每天的日志的名字，如:common-default.2015-02-06.log -->
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d %-5p %c{2} - %m%n" />
+        </layout>
+    </appender>
+
+    <!-- [错误日志  专用于收集特殊错误的文件] -->
+    <appender name="ERROR-APPENDER" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="../logs/common-error.log" />
+        <param name="Append" value="true" />
+        <param name="encoding" value="UTF-8" />
+        <param name="threshold" value="error" />  <!-- 日志输出级别为error,详见 注6 -->
+        <param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d %-5p %c{2} - %m%n" />
+        </layout>
+    </appender>
+
+    <!-- [组件日志APPENDER] -->
+    <appender name="COMPONENT-APPENDER"
+              class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="../logs/logistics-component.log" />
+        <param name="Append" value="true" />
+        <param name="encoding" value="utf-8" />
+        <param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d %-5p %c{2} - %m%n" />
+        </layout>
+    </appender>
+
+    <!-- 用于定义logger的lever和所采用的appender，其中appender-ref必须为先前定义的 appenders的名称。
+            那么log就会以appender所定义的输出格式来输出log。 -->
+    <logger name="LOGISTICS-COMPONENT">
+        <level value="${loggingLevel}" />
+        <appender-ref ref="COMPONENT-APPENDER" />
+        <appender-ref ref="ERROR-APPENDER" />
+    </logger>
+
+    <!-- Root Logger -->
+    <!-- 1.root的作用是收集下面所有反馈上来的信息流并根据配置在root中appender进行输出，
+                       只要你在looger中配置了additivity="false"，就不会反馈到root中。
+         2.root标签为log的默认输出形式，如果一个类的log没有在loggers中明确指定其输出lever与格式，那么就会采用root中定义的格式-->
+    <root>
+        <level value="${rootLevel}"></level>
+        <appender-ref ref="DEFAULT-APPENDER" />
+        <appender-ref ref="ERROR-APPENDER" />
+    </root>
+</log4j:configuration>
