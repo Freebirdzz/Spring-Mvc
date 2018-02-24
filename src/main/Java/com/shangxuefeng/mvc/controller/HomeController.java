@@ -26,9 +26,17 @@ public class HomeController {
     }
 
 
+    /**
+     *
+     * @param foo 待验证的参数
+     * @param bindingResult 验证结果，具体可以再代码里对验证结果进行判断
+     * @return
+     */
     @RequestMapping(value = "/check", method = RequestMethod.GET)
     public String check(@Valid Foo foo, BindingResult bindingResult){
-        logger.info(">>>>>>>>>>>>>>Home控制器test方法，[映射url：/home/check]<<<<<<<<<<<<<<<<");
+        if (bindingResult.hasErrors()){
+            return "check-error";
+        }
         return "check";
     }
 
