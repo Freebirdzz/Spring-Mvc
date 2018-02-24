@@ -40,4 +40,10 @@ public class HomeController {
         return "check";
     }
 
+    @RequestMapping(value = "/filter", method = RequestMethod.GET)
+    public String filter(@Valid Foo foo, BindingResult bindingResult){
+        logger.info(">>>>>>>>>>>>>>>>>>>>>>> Home控制器的filter方法，映射url：/home/filter <<<<<<<<<<<<<<<<<<<<<<<<");
+        return "check";
+    }
+
 }

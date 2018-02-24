@@ -8,7 +8,7 @@
 
 
     <!--解决中文乱码问题-->
-    <filter>
+<!--    <filter>
         <filter-name>characterEncodingFilter</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
         <init-param>
@@ -23,7 +23,7 @@
     <filter-mapping>
         <filter-name>characterEncodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
-    </filter-mapping>
+    </filter-mapping>-->
 
 
 
@@ -40,7 +40,6 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:applicationContext.xml</param-value>
     </context-param>
-
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
@@ -66,4 +65,30 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
+    
+
+    <!--配置了一个自定义的监听器，监听ServletContextListener-->
+    <listener>
+        <listener-class>com.shangxuefeng.mvc.listener.MyServletContextListener</listener-class>
+    </listener>
+
+
+    <!--配置两个过滤器,配置顺序决定调用顺序-->
+    <filter>
+        <filter-name>filterOne</filter-name>
+        <filter-class>com.shangxuefeng.mvc.filter.MyFilterOne</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>filterOne</filter-name>
+        <url-pattern>/home/filter</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>filterTwo</filter-name>
+        <filter-class>com.shangxuefeng.mvc.filter.MyFilterTwo</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>filterTwo</filter-name>
+        <url-pattern>/home/filter</url-pattern>
+    </filter-mapping>
 </web-app>

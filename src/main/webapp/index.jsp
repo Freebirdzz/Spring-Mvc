@@ -18,6 +18,8 @@
 <a href="<%=request.getContextPath()%>/device/test">访问设备检测</a>
 <br>
     <a href="<%=request.getContextPath()%>/home/check">valid校验</a>
+<br>
+    <a href="<%=request.getContextPath()%>/home/filter">测试一个filter的处理</a>
 
 </body>
 </html>
